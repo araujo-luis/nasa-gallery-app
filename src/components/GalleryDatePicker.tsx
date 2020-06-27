@@ -1,15 +1,15 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import moment from 'moment';
-import { changeDate } from "../reducers/date";
-import { useDispatch } from 'react-redux';
+import { changeDate, selectDate } from "../reducers/date";
+import { useDispatch, useSelector } from 'react-redux';
 
 const GalleryDatePicker: FC = () => {
     const today = moment().format("YYYY-MM-DD");
     const dispatch = useDispatch();
-    const [date, setDate] = useState(today);
+    const date = useSelector(selectDate);
 
     const onChangeDate = (currentDate: string)=>{
-        setDate(currentDate)
+        dispatch(changeDate(currentDate));
         console.log("stateChanged", currentDate)
     }
     return(
@@ -17,10 +17,7 @@ const GalleryDatePicker: FC = () => {
         className="datepicker"
         max={today}
         value={date}
-        onChange= {(date: ChangeEvent<HTMLInputElement>) => {
-            dispatch(changeDate(date.target.value));
-            onChangeDate(date.target.value)
-        }}
+        onChange= {(date: ChangeEvent<HTMLInputElement>) => onChangeDate(date.target.value)}
         name="date"></input>
     );
 }

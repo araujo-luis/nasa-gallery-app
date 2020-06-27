@@ -14,22 +14,31 @@
   height: auto;
 }
 
+.carousel-control-prev, .carousel-control-next {
+  height: 85%;
+  font-size: 2em;
+  color: gray;
+  background: none;
+  border: none;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  color: black;
+}
+
+button:focus{
+  color: gray !important;
+}
 .carousel-control-prev {
   margin-left: -100px;
-  height: 85%;
 }
 
 .carousel-control-next {
   margin-right: -100px;
-  height: 85%;
 }
 
-.carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23777' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-}
-
-.carousel-control-next-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23777' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+.carousel-inner {
+  overflow: visible;
 }
 
 .datepicker, .like-button {

@@ -1,33 +1,19 @@
 import React, { FC, useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import { useSelector } from 'react-redux';
+import { selectDate } from '../reducers/date';
+
 import LikeButton from './LikeButton';
 import GalleryDatePicker from './GalleryDatePicker';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectDate, changeDate } from '../reducers/date';
+
 import getImageByDate from '../services/nasaImage';
 import { NasaImage } from '../interfaces';
-import moment from 'moment';
+import NextButton from './NextButton';
+import PrevButton from './PrevButton';
 
 const Gallery: FC = () => {
-    const format = "YYYY-MM-DD";
-    const today = moment().format(format);
     const date = useSelector(selectDate);
-    const dispatch = useDispatch();
     const [nasaImage, setNasaImage] = useState<NasaImage>();
-
-    const previous = () => {
-        const subtractOneDay = moment(date).add(-1, 'days');
-        dispatch(changeDate(subtractOneDay.format(format)));
-    };
-    const next = () => {
-        const addOneDay = moment(date).add(1, 'days');
-        console.log({ addOneDay })
-        if (addOneDay.isSameOrBefore(today))
-            dispatch(changeDate(addOneDay.format(format)));
-        else
-            console.log('cant not be greater than today');
-
-    };
 
     useEffect(() => {
         getImageByDate(date)
@@ -39,7 +25,7 @@ const Gallery: FC = () => {
     return (
         <div className="container">
             <span>{date}</span>
-            <Carousel className="nasa-carousel" interval={null} indicators={false}>
+            <Carousel className="nasa-carousel" interval={null} controls={false} indicators={false}>
 
                 <Carousel.Item>
                     <img
@@ -53,8 +39,8 @@ const Gallery: FC = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <LikeButton />
-                <button onClick={previous} style={{ position: "relative" }}>Prev</button>
-                <button onClick={next} style={{ position: "relative" }}>Next</button>
+                <NextButton />
+                <PrevButton />
                 <GalleryDatePicker />
             </Carousel>
 
