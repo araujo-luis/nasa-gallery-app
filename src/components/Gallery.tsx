@@ -2,7 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import LikeButton from './LikeButton';
 import GalleryDatePicker from './GalleryDatePicker';
-
+import { useSelector } from 'react-redux';
+import { selectDate } from '../reducers/date';
 interface NasaImage {
     date: string,
     title: string,
@@ -11,7 +12,9 @@ interface NasaImage {
 
 }
 const Gallery: FC = () => {
-    console.log("API KEY", process.env.API_KEY);
+
+    const date = useSelector(selectDate);
+    
     const [nasaImage, setNasaImage] = useState<NasaImage>();
 
     const handleSelect = (selectedIndex: any, e: any) => {
@@ -20,15 +23,25 @@ const Gallery: FC = () => {
     const handleSlide = (selectedIndex: any) => {
         console.log("slide", selectedIndex);
     };
-    useEffect(() => {
 
-        fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=2020-06-27`)
+    const handleButton = () => {
+        console.log("click");
+        fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=${date}`)
             .then(res => res.json())
             .then(data => {
                 console.log("nasa image", data)
                 setNasaImage(data)
             });
-    }, []);
+    }
+
+    useEffect(() => {
+        fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=${date}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log("nasa image", data)
+                setNasaImage(data)
+            });
+    }, [date]);
 
     return (
         <div className="container">
@@ -45,12 +58,12 @@ const Gallery: FC = () => {
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-
+                <button onClick={handleButton} style={{ position: "relative" }}>Chnage</button>
                 <LikeButton />
                 <GalleryDatePicker />
             </Carousel>
 
-        </div>
+        </div >
     )
 }
 
