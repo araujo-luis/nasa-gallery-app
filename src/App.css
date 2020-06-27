@@ -1,39 +1,43 @@
-.App {
-  text-align: center;
+.carousel-caption {
+  position: relative;
+  left: auto;
+  right: auto;
+  color: black;
+  bottom: -2em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.carousel {
+  margin: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.carousel-inner {
+  height: auto;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.carousel-control-prev {
+  margin-left: -100px;
+  height: 85%;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.carousel-control-next {
+  margin-right: -100px;
+  height: 85%;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px)
-  }
-  100% {
-    transform: translateY(0px)
-  }
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23777' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23777' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.datepicker, .like-button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5em;
+}
+
+.datepicker {
+  right: 0;
 }
