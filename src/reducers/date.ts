@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
+import moment from 'moment';
 
 interface DateState {
   value: string;
 }
 
 const initialState: DateState = {
-  value: '2020-06-27',
+  value: moment().format('YYYY-MM-DD'),
 };
 
 export const updateDate = createSlice({
@@ -15,7 +16,7 @@ export const updateDate = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     changeDate: (state, action: PayloadAction<string>) => {
-      console.log('REDUX!! ', {state, action})
+      console.log('REDUX!! ', { state, action })
       state.value = action.payload;
     },
   },
