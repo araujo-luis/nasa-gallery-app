@@ -10,32 +10,64 @@ import getImageByDate from '../services/nasaImage';
 import { NasaImage } from '../interfaces';
 import NextButton from './NextButton';
 import PrevButton from './PrevButton';
+import { Modal, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 const { HideUntilLoaded } = require('react-animation/');
 
 
 const Gallery: FC = () => {
     const date = useSelector(selectDate);
     const [nasaImage, setNasaImage] = useState<NasaImage>();
+    const [showError, setShowError] = useState(false);
 
     useEffect(() => {
         getImageByDate(date)
-            .then((image: NasaImage) => { setNasaImage(image) })
-            .catch(err => console.log("something wrong", err));
+            .then((image: NasaImage) => {
+                setNasaImage(image);
+                setShowError(false);
+            })
+            .catch(err => {
+                console.log("something wrong", err)
+                setShowError(true);
+            });
 
     }, [date]);
 
     return (
         <div className="container">
 
-            <h1>{nasaImage ? nasaImage.title : ''}</h1>
 
-            <div className="my-carousel">
+            <div className="my-carousel col-8">
+                <h1 className="carousel-title">{nasaImage ? nasaImage.title : ''}</h1>
                 <div className="active carousel-item">
                     <HideUntilLoaded
                         imageToLoad={nasaImage ? nasaImage.url : ''} du
                         Spinner={() => <div>Loading...</div>}
                     >
-                        <img className="d-block w-100" src={nasaImage ? nasaImage.url : ''} alt="" />
+
+                        <Modal
+                            size="lg"
+                            show={showError}
+                            onHide={() => setShowError(false)}
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                    <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon> Error
+                               </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>  Date must be between Jun 16, 1995 and today.</Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={() => setShowError(false)}>Close</Button>
+                            </Modal.Footer>
+
+
+                        </Modal>
+
+                        <img className="d-block w-100 rounded" src={nasaImage ? nasaImage.url : ''} alt="" />
+
                     </HideUntilLoaded>
                     <NextButton />
                     <PrevButton />
@@ -50,7 +82,7 @@ const Gallery: FC = () => {
                 </div>
 
             </div>
-
+            <br /><br /><br />
             {/* <Carousel className="nasa-carousel" interval={null} controls={false} indicators={false}>
 
                 <Carousel.Item>

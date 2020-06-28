@@ -1,9 +1,11 @@
-import React, { FC,} from 'react';
+import React, { FC, } from 'react';
 
 const NavBar: FC = () => {
-    
-    return( 
-        <h2>NavBar</h2>
+
+    return (
+        <div className="nav-bar">
+            <h2>NASA's Astronomy Picture of the Day</h2>
+        </div>
     )
 }
 

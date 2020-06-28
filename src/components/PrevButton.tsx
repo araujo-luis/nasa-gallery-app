@@ -8,13 +8,17 @@ import { isLiked } from "../reducers/favoritePhotos";
 
 const PrevButton: FC = () => {
     const format = "YYYY-MM-DD";
+    const startDate = '1995-06-16';
+
     const date = useSelector(selectDate);
     const dispatch = useDispatch();
 
     const previous = () => {
         const subtractOneDay = moment(date).add(-1, 'days');
-        dispatch(changeDate(subtractOneDay.format(format)));
-        dispatch(isLiked(subtractOneDay.format(format)));
+        if (subtractOneDay.isSameOrAfter(startDate)) {
+            dispatch(changeDate(subtractOneDay.format(format)));
+            dispatch(isLiked(subtractOneDay.format(format)));
+        }
 
     };
     return (
