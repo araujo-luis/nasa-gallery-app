@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev-server": "webpack-dev-server --content-base ./public",
-    "build": "webpack -p --progress --colors",
+    "build": "webpack -p",
     "heroku-postbuild": "npm run build",
     "start": "node server.js"
   },
@@ -56,5 +56,8 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
