@@ -26,8 +26,10 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base ./public",
-    "build": "webpack -p --progress --colors"
+    "dev-server": "webpack-dev-server --content-base ./public",
+    "build": "webpack -p --progress --colors",
+    "heroku-postbuild": "npm run build",
+    "start": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
