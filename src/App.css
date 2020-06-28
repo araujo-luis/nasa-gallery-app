@@ -9,7 +9,7 @@ body {
   background: #303f9f;
   color: white;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 3em;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, .2)
 }
 
@@ -137,4 +137,22 @@ button:focus {
 
 .modal-title svg {
   color: #D32F2F;
+}
+
+
+.footer {
+  background: #585f73;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer p {
+  color: white;
+  margin: 0 auto;
+}
+
+.footer .love-icon {
+  color: red;
 }

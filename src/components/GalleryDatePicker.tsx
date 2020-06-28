@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, KeyboardEvent } from 'react';
 import moment from 'moment';
 import { changeDate, selectDate } from "../reducers/date";
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,10 +14,14 @@ const GalleryDatePicker: FC = () => {
         dispatch(isLiked(currentDate));
         console.log("stateChanged", currentDate)
     }
+    const disableManualInput = (e: KeyboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+    }
     return (
         <input type="date"
             className="datepicker"
             max={today}
+            onKeyDown={disableManualInput}
             value={date}
             onChange={(date: ChangeEvent<HTMLInputElement>) => onChangeDate(date.target.value)}
             name="date"></input>

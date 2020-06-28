@@ -15,8 +15,6 @@ export const addPhoto = createSlice({
     initialState,
     reducers: {
         addOrRemoveFavoritePhoto: (state, action: PayloadAction<string>) => {
-            console.log('addOrRemoveFavoritePhoto REDUX!! ', { state, action })
-
             const { payload: currentPhoto } = action;
             const isLiked = state.value.find((element: string) => element === currentPhoto);
             if (isLiked) {
@@ -32,7 +30,6 @@ export const addPhoto = createSlice({
             const { payload: currentPhoto } = action;
             const isLiked = state.value.find((element: string) => element === currentPhoto);
             state.liked = !!isLiked;
-            console.log('IsLiked REDUX!! ', { state, action })
         },
         loadFavoritePhotos: (state) => {
             const favoritePhotos = localStorage.getItem('favoritePhotos');

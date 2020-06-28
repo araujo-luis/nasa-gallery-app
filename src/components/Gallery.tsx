@@ -58,7 +58,13 @@ const Gallery: FC = () => {
                                     <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon> Error
                                </Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>  Date must be between Jun 16, 1995 and today.</Modal.Body>
+                            <Modal.Body>An error ocurred while trying to fetch NASA's API. Consider the following:
+                                <ul>
+                                    <li>Date must be between Jun 16, 1995 and today.</li>
+                                    <li>API KEY is correct.</li>
+                                    <li>API URl is correct.</li>
+                                </ul>
+                            </Modal.Body>
                             <Modal.Footer>
                                 <Button onClick={() => setShowError(false)}>Close</Button>
                             </Modal.Footer>
