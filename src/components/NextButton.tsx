@@ -4,6 +4,7 @@ import { selectDate, changeDate } from "../reducers/date";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
+import { isLiked } from "../reducers/favoritePhotos";
 
 const NextButton: FC = () => {
     const format = "YYYY-MM-DD";
@@ -14,8 +15,10 @@ const NextButton: FC = () => {
     const next = () => {
         const addOneDay = moment(date).add(1, 'days');
         console.log({ addOneDay })
-        if (addOneDay.isSameOrBefore(today))
+        if (addOneDay.isSameOrBefore(today)){
             dispatch(changeDate(addOneDay.format(format)));
+            dispatch(isLiked(addOneDay.format(format)));
+        }
         else
             console.log('cant not be greater than today');
 

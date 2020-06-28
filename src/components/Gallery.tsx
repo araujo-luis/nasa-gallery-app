@@ -24,7 +24,7 @@ const Gallery: FC = () => {
 
     return (
         <div className="container">
-            <span>{date}</span>
+            <h1>{nasaImage ? nasaImage.title : ''}</h1>
             <Carousel className="nasa-carousel" interval={null} controls={false} indicators={false}>
 
                 <Carousel.Item>

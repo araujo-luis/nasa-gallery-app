@@ -26,9 +26,10 @@
   color: black;
 }
 
-button:focus{
+button:focus {
   color: gray !important;
 }
+
 .carousel-control-prev {
   margin-left: -100px;
 }
@@ -49,4 +50,14 @@ button:focus{
 
 .datepicker {
   right: 0;
+}
+
+.like-button a {
+  font-size: 1.7em;
+  padding: 0.5em;
+  color: #a4a4a4;
+}
+
+.liked {
+  color: red !important;
 }
