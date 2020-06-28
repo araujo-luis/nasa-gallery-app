@@ -10,18 +10,32 @@
   margin: 1.5rem;
 }
 
+.carousel-item {
+  float: none;
+}
+
 .carousel-inner {
   height: auto;
 }
 
 .carousel-control-prev, .carousel-control-next {
-  height: 85%;
+  height: 100%;
   font-size: 2em;
   color: gray;
   background: none;
   border: none;
 }
+.carousel-item span {
+  width: 100%;
+}
 
+.carousel-item img {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  max-height: 500px;
+}
 .carousel-control-prev:hover, .carousel-control-next:hover {
   color: black;
 }
@@ -42,14 +56,21 @@ button:focus {
   overflow: visible;
 }
 
-.datepicker, .like-button {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 5em;
+.like-button {
+  float: left;
+}
+
+.options-container {
+  padding: 0.5em 0px;
+}
+
+.caption-container {
+  margin-top: 3em;
+  text-align: center;
 }
 
 .datepicker {
-  right: 0;
+  float: right;
 }
 
 .like-button a {

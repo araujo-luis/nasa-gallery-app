@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+
 import { useSelector } from 'react-redux';
 import { selectDate } from '../reducers/date';
 
@@ -10,6 +10,8 @@ import getImageByDate from '../services/nasaImage';
 import { NasaImage } from '../interfaces';
 import NextButton from './NextButton';
 import PrevButton from './PrevButton';
+const { HideUntilLoaded } = require('react-animation/');
+
 
 const Gallery: FC = () => {
     const date = useSelector(selectDate);
@@ -24,8 +26,32 @@ const Gallery: FC = () => {
 
     return (
         <div className="container">
+
             <h1>{nasaImage ? nasaImage.title : ''}</h1>
-            <Carousel className="nasa-carousel" interval={null} controls={false} indicators={false}>
+
+            <div className="my-carousel">
+                <div className="active carousel-item">
+                    <HideUntilLoaded
+                        imageToLoad={nasaImage ? nasaImage.url : ''} du
+                        Spinner={() => <div>Loading...</div>}
+                    >
+                        <img className="d-block w-100" src={nasaImage ? nasaImage.url : ''} alt="" />
+                    </HideUntilLoaded>
+                    <NextButton />
+                    <PrevButton />
+                </div>
+                <div className="options-container">
+                    <LikeButton />
+                    <GalleryDatePicker />
+
+                </div>
+                <div className="caption-container">
+                    {nasaImage ? nasaImage.explanation : ''}
+                </div>
+
+            </div>
+
+            {/* <Carousel className="nasa-carousel" interval={null} controls={false} indicators={false}>
 
                 <Carousel.Item>
                     <img
@@ -42,7 +68,7 @@ const Gallery: FC = () => {
                 <NextButton />
                 <PrevButton />
                 <GalleryDatePicker />
-            </Carousel>
+            </Carousel> */}
 
         </div >
     )
