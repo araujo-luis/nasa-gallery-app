@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const env = dotenv.config().parsed;
+const env = dotenv.config({path: __dirname + '/.env'})
 
 module.exports = {
   entry: './src/index.tsx',
@@ -22,5 +22,9 @@ module.exports = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }
     ],
   },
- 
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": env.parsed
+  }),
+  ]
 }
