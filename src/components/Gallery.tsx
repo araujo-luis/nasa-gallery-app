@@ -38,7 +38,7 @@ const Gallery: FC = () => {
         <div className="container">
 
 
-            <div className="my-carousel col-8">
+            <div className="my-carousel col-md-8 col-sm-12">
                 <h1 className="carousel-title">{nasaImage ? nasaImage.title : ''}</h1>
                 <div className="active carousel-item">
                     <HideUntilLoaded
