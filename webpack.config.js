@@ -1,7 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
-const dotenv = require('dotenv');
-const env = dotenv.config({path: __dirname + '/.env'})
+const Dotenv = require('dotenv-webpack');
+
 
 module.exports = {
   entry: './src/index.tsx',
@@ -23,8 +22,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": env.parsed
-  }),
+    new Dotenv()
   ]
 }
